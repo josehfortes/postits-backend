@@ -14,5 +14,6 @@ module.exports = {
     'linebreak-style': 0,
     semi: ['error', 'never'],
     'import/prefer-default-export': 'off',
+    'arrow-body-style': 'off',
   },
 }

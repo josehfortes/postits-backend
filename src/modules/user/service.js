@@ -1,7 +1,12 @@
+import bcrypt from 'bcryptjs'
+
 import UserSchema from './schema'
 import connectToDatabase from '../../utils/connectToDatabase'
 
-export const createUser = async (userdata) => {
+const SALT = 8
+
+export const createUser = async (userData) => {
   await connectToDatabase()
-  return UserSchema.create({ ...userdata })
+  const passwordHash = bcrypt.hashSync(userData.password, SALT)
+  return UserSchema.create({ ...userData, password: passwordHash })
 }

@@ -1,19 +1,12 @@
 import { createUser } from './service'
+import { created, serverError } from '../../utils/responses'
 
 export const createAccount = async (event) => {
   try {
     const body = JSON.parse(event.body)
     const user = await createUser(body)
-    return {
-      statusCode: 200,
-      body: JSON.stringify({
-        user,
-      }),
-    }
+    return created(user)
   } catch (err) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify(err),
-    }
+    return serverError(err)
   }
 }

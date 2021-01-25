@@ -23,6 +23,7 @@
     "webpack-node-externals": "^2.5.2"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "mongoose": "^5.11.13"
   }
 }
