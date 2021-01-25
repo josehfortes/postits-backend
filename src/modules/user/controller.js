@@ -1,4 +1,4 @@
-import { createUser, loginService } from './service'
+import { createUser, loginService, userAuthorizer } from './service'
 import {
   ok, created, serverError, badRequest,
 } from '../../utils/responses'
@@ -24,6 +24,15 @@ export const login = async (event) => {
     return ok({ [AUTHORIZATION_KEY]: token })
   } catch (err) {
     if (err.message === 'password_incorrect') return badRequest('password_incorrect')
+    return serverError(err)
+  }
+}
+
+export const authorizer = async ({ authorizationToken, methodArn }) => {
+  try {
+    const policy = await userAuthorizer(authorizationToken, methodArn)
+    return policy
+  } catch (err) {
     return serverError(err)
   }
 }

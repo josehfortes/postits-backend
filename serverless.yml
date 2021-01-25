@@ -43,3 +43,18 @@ functions:
               "type": "object",
               "required": ["email", "password"]
             }
+  authorizer:
+    handler: src/modules/user/controller.authorizer
+  createBoard:
+    handler: src/modules/board/controller.create
+    events:
+    - http:
+        path: board
+        method: post
+        authorizer: authorizer
+        request:
+          schema:
+            application/json: {
+              "type": "object",
+              "required": ["name"]
+            }
