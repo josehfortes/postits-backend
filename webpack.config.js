@@ -9,11 +9,11 @@ module.exports = {
   mode: slsw.lib.webpack.isLocal ? 'development' : 'production',
   optimization: {
     // nao vamos minimizar o código por enqnt
-    minimize: false
+    minimize: false,
   },
   performance: {
-    //desabilita warnings sobre o tamanho das entry points
-    hints: false
+    // desabilita warnings sobre o tamanho das entry points
+    hints: false,
   },
   module: {
     rules: [
@@ -21,8 +21,8 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         include: __dirname,
-        exclude: /node_modules/
-      }
-    ]
-  }
+        exclude: /node_modules/,
+      },
+    ],
+  },
 }
