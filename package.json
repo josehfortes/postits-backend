@@ -16,9 +16,13 @@
     "eslint": "^7.18.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
+    "serverless-dotenv-plugin": "^3.1.0",
     "serverless-offline": "^6.8.0",
     "serverless-webpack": "^5.3.5",
     "webpack": "^5.16.0",
     "webpack-node-externals": "^2.5.2"
+  },
+  "dependencies": {
+    "mongoose": "^5.11.13"
   }
 }
