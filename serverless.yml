@@ -25,3 +25,21 @@ functions:
     - http:
         path: user/create
         method: post
+        request:
+          schema:
+            application/json: {
+              "type": "object",
+              "required": ["firstName", "lastName", "email", "password"]
+            }
+  login:
+    handler: src/modules/user/controller.login
+    events:
+    - http:
+        path: user
+        method: post
+        request:
+          schema:
+            application/json: {
+              "type": "object",
+              "required": ["email", "password"]
+            }

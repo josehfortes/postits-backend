@@ -15,5 +15,6 @@ module.exports = {
     semi: ['error', 'never'],
     'import/prefer-default-export': 'off',
     'arrow-body-style': 'off',
+    'no-underscore-dangle': 'off',
   },
 }

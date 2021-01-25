@@ -1,12 +1,29 @@
 import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
 
 import UserSchema from './schema'
 import connectToDatabase from '../../utils/connectToDatabase'
 
 const SALT = 8
 
+const createLoginToken = (data) => {
+  return jwt.sign({
+    id: data._id,
+    firstName: data.firstName,
+    email: data.email,
+  }, process.env.LOGIN_TOKEN_SECRET)
+}
+
 export const createUser = async (userData) => {
   await connectToDatabase()
   const passwordHash = bcrypt.hashSync(userData.password, SALT)
-  return UserSchema.create({ ...userData, password: passwordHash })
+  const user = await UserSchema.create({ ...userData, password: passwordHash })
+  return createLoginToken(user)
+}
+
+export const loginService = async (userData) => {
+  await connectToDatabase()
+  const user = await UserSchema.findOne({ email: userData.email }).lean().exec()
+  if (!bcrypt.compareSync(userData.password, user.password)) throw new Error('password_incorrect')
+  return createLoginToken(user)
 }
