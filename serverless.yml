@@ -18,9 +18,9 @@ provider:
     shouldStartNameWithService: true
 
 functions:
-  hello:
-    handler: handler.hello
+  createAccount:
+    handler: src/modules/user/controller.createAccount
     events:
     - http:
-        path: hello
-        method: get
+        path: user/create
+        method: post
